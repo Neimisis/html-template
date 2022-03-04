@@ -1,3 +1,6 @@
+/**
+ * Отложенная загрузка Iframe от YouTube
+ */
 (function(){
 
 function findVideos() {

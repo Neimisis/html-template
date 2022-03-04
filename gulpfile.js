@@ -1,8 +1,5 @@
 const project_folder = "dist";
 const source_folder = "src";
-
-const fs = require('fs');
-
 const path = {
     build: {
         html: project_folder + "/",
@@ -26,11 +23,13 @@ const path = {
     },
     clean: "./" + project_folder + "/",
 }
-
+const fs = require('fs');
 const {src, dest} = require('gulp');
 const gulp = require('gulp');
 const browsersync = require("browser-sync").create();
 const fileinclude = require("gulp-file-include");
+const formatHtml = require('gulp-format-html')
+const removeEmptyLines = require('gulp-remove-empty-lines');
 const del = require("del");
 const sass = require("gulp-dart-sass");
 const autoprefixer = require("gulp-autoprefixer");
@@ -47,6 +46,7 @@ const svgSprite = require('gulp-svg-sprite');
 const ttf2woff = require('gulp-ttf2woff');
 const ttf2woff2 = require('gulp-ttf2woff2');
 const fonter = require('gulp-fonter');
+const strip = require('gulp-strip-comments');
 
 function browserSync(params) {
     browsersync.init({
@@ -61,7 +61,10 @@ function browserSync(params) {
 function html() {
     return src(path.src.html)
     .pipe(fileinclude())
+    .pipe(strip())
     .pipe(webphtml())
+    .pipe(formatHtml())
+    .pipe(removeEmptyLines())
     .pipe(dest(path.build.html))
     .pipe(browsersync.stream())
 }
@@ -89,6 +92,7 @@ function js() {
         .pipe(fileinclude())
         .pipe(concat("script.js"))
         .pipe(dest(path.build.js))
+        .pipe(strip())
         .pipe(uglify())
         .pipe(
             rename({
