@@ -14,7 +14,7 @@ const path = {
     src: {
         html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"], 
         css: source_folder + "/scss/style.scss",
-        js: source_folder + "/js/script.js",
+        js: source_folder + "/js/*.js",
         img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
         fonts: source_folder + "/fonts/*.ttf",
     },
@@ -40,6 +40,7 @@ const rename = require("gulp-rename");
 const uglify = require("gulp-uglify-es").default;
 const imagemin = require("gulp-imagemin");
 const webp = require('gulp-webp');
+const concat = require('gulp-concat');
 const webphtml = require('gulp-webp-html');
 //const webpcss = require("gulp-webpcss");
 const svgSprite = require('gulp-svg-sprite');
@@ -86,10 +87,9 @@ function css() {
 function js() {
     return src(path.src.js)
         .pipe(fileinclude())
+        .pipe(concat("script.js"))
         .pipe(dest(path.build.js))
-        .pipe(
-            uglify()
-        )
+        .pipe(uglify())
         .pipe(
             rename({
                 extname: ".min.js"
