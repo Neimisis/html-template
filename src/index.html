@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="ru">
-@@include('_head.html',{})
-<body>
-    <div class="wrapper">
-        @@include('_header.html',{})
-        <main class="page">
-            
-        </main>
-        @@include('_footer.html',{})
-    </div>
-    @@include('_popup.html',{})
-    @@include('_js.html',{})
-</body>
+<html lang="ru" dir="ltr">
+    @@include('./component/head/head.html',{})
+    <body>
+        <div class="page">
+            @@include('./component/header/header.html',{})
+            <main class="main">
+                <a href="#popup" class="js-open-popup">Show inline popup</a>
+                @@include('./component/popup/popup.html',{})
+            </main>
+            @@include('./component/footer/footer.html',{})
+        </div>
+    </body>
+    <script src="/js/lib/jquery.js"></script>
+    <script src="/js/lib/bootstrap.bundle.js"></script>
+    <script src="/js/lib/jquery.magnific-popup.js"></script>
+    <script src="/js/lib/swiper-bundle.js"></script>
+    <script src="/js/script.js"></script>
 </html>

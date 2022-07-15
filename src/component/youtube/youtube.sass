@@ -1,0 +1,56 @@
+// YouTube
+.youtube
+    position: relative
+    width: 100%
+    height: 0
+    padding-bottom: 56.25%
+    background-color: #000000
+
+.youtube__link
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+
+.youtube__media, .youtube iframe
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    border: none
+
+.youtube__button
+    position: absolute
+    top: 50%
+    left: 50%
+    z-index: 1
+    padding: 0
+    width: 68px
+    height: 48px
+    border: none
+    background-color: transparent
+    transform: translate(-50%, -50%)
+    cursor: pointer
+
+.youtube__button-shape
+    fill: #212121
+    fill-opacity: 0.8
+
+.youtube__button-icon
+    fill: #ffffff
+
+.youtube__button:focus
+    outline: none
+
+.youtube:hover .youtube__button-shape,
+.youtube__button:focus .youtube__button-shape
+    fill: #ff0000
+    fill-opacity: 1
+
+.youtube--enabled
+    cursor: pointer
+
+.youtube--enabled .youtube__button
+    display: block
